@@ -1,6 +1,6 @@
 ﻿namespace KeyboardTrainingUtility
 {
-    partial class KTUMain
+    partial class mainWindow
     {
         /// <summary>
         ///  Required designer variable.
@@ -30,11 +30,14 @@
         {
             this.textBoxMain = new System.Windows.Forms.RichTextBox();
             this.startButton = new System.Windows.Forms.Button();
+            this.textBoxInput = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // textBoxMain
             // 
             this.textBoxMain.DetectUrls = false;
+            this.textBoxMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.textBoxMain.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.textBoxMain.Location = new System.Drawing.Point(11, 26);
             this.textBoxMain.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxMain.Name = "textBoxMain";
@@ -42,6 +45,7 @@
             this.textBoxMain.Size = new System.Drawing.Size(800, 200);
             this.textBoxMain.TabIndex = 0;
             this.textBoxMain.Text = "";
+            this.textBoxMain.Enter += new System.EventHandler(this.textBoxMain_Enter);
             // 
             // startButton
             // 
@@ -54,16 +58,29 @@
             this.startButton.UseVisualStyleBackColor = true;
             this.startButton.Click += new System.EventHandler(this.startButton_Click);
             // 
-            // KTUMain
+            // textBoxInput
+            // 
+            this.textBoxInput.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.textBoxInput.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBoxInput.DetectUrls = false;
+            this.textBoxInput.Location = new System.Drawing.Point(12, 231);
+            this.textBoxInput.Name = "textBoxInput";
+            this.textBoxInput.Size = new System.Drawing.Size(516, 96);
+            this.textBoxInput.TabIndex = 1;
+            this.textBoxInput.Text = "";
+            this.textBoxInput.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxInput_KeyPress);
+            // 
+            // mainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(806, 426);
-            this.Controls.Add(this.startButton);
+            this.ClientSize = new System.Drawing.Size(822, 464);
             this.Controls.Add(this.textBoxMain);
-            this.Name = "KTUMain";
+            this.Controls.Add(this.startButton);
+            this.Controls.Add(this.textBoxInput);
+            this.Name = "mainWindow";
             this.Text = "Keyboard Training Utility";
-            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.main_KeyPress);
+            this.Enter += new System.EventHandler(this.mainWindow_Enter);
             this.ResumeLayout(false);
 
         }
@@ -72,6 +89,7 @@
 
         public System.Windows.Forms.RichTextBox textBoxMain;
         private System.Windows.Forms.Button startButton;
+        private System.Windows.Forms.RichTextBox textBoxInput;
     }
 }
 

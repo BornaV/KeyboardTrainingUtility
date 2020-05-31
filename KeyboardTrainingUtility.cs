@@ -10,26 +10,37 @@ using System.Windows.Forms;
 
 namespace KeyboardTrainingUtility
 {
-    public partial class KTUMain : Form
+    public partial class mainWindow : Form
     {
-        public string tempStoredText = Clipboard.GetText();
         public string tempSentanceInput;
         public string tempPressedKey;
         public int courrentPosition;
+        public string tempStoredText = Clipboard.GetText();
+        
 
 
-        public KTUMain()
+        public mainWindow()
         {
             InitializeComponent();
             textBoxMain.Text = tempStoredText;
+            textBoxInput.Focus();
+            normalUnderline();
         }
 
-
-        private void main_KeyPress(object sender, KeyPressEventArgs e)
+        
+        
+        private void textBoxInput_KeyPress(object sender, KeyPressEventArgs e) //SeconderyTextBox used as reference
         {
             editTextColor(e);
         }
-
+        private void textBoxMain_Enter(object sender, EventArgs e)
+        {
+            textBoxInput.Focus();
+        }
+        private void mainWindow_Enter(object sender, EventArgs e)
+        {
+            textBoxInput.Focus();
+        }
         private void startButton_Click(object sender, EventArgs e)
         {
 
@@ -42,9 +53,9 @@ namespace KeyboardTrainingUtility
         }
         void editTextColor(KeyPressEventArgs e)
         {
-            if (textBoxMain.TextLength != courrentPosition)
+            if (textBoxInput.TextLength != courrentPosition)
             {
-                courrentPosition = textBoxMain.TextLength;
+                courrentPosition = textBoxInput.TextLength;
             }
 
 
@@ -63,10 +74,8 @@ namespace KeyboardTrainingUtility
                     textBoxMain.SelectionStart = courrentPosition;
                     textBoxMain.SelectionLength = textBoxMain.TextLength - courrentPosition;
                     textBoxMain.SelectionColor = Color.Black;
-                    textBoxMain.SelectionFont = new Font("Microsoft Sans Serif", 13, FontStyle.Regular); //make everithing in front of the selected Black
-
-                    normalUnderline(1, "Black");//make sure that the underline is persistant
-
+                    textBoxMain.SelectionFont = new Font("Microsoft Sans Serif", 13, FontStyle.Regular); //make everithing in front of the selected 
+                    normalUnderline(1, "Black");//make sure that the underline is 
                     courrentPosition--;
                 }
                 else

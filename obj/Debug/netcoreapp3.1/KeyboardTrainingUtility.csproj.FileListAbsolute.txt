@@ -12,4 +12,4 @@ E:\Projects\VisaulStudioCodeProjects\KeyboardTrainingUtility\obj\Debug\netcoreap
 E:\Projects\VisaulStudioCodeProjects\KeyboardTrainingUtility\obj\Debug\netcoreapp3.1\KeyboardTrainingUtility.pdb
 E:\Projects\VisaulStudioCodeProjects\KeyboardTrainingUtility\obj\Debug\netcoreapp3.1\KeyboardTrainingUtility.genruntimeconfig.cache
 E:\Projects\VisaulStudioCodeProjects\KeyboardTrainingUtility\obj\Debug\netcoreapp3.1\KeyboardTrainingUtility.csproj.GenerateResource.cache
-E:\Projects\VisaulStudioCodeProjects\KeyboardTrainingUtility\obj\Debug\netcoreapp3.1\KeyboardTrainingUtility.KTUMain.resources
+E:\Projects\VisaulStudioCodeProjects\KeyboardTrainingUtility\obj\Debug\netcoreapp3.1\KeyboardTrainingUtility.mainWindow.resources
