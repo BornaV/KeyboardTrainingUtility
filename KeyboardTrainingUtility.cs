@@ -57,6 +57,16 @@ namespace KeyboardTrainingUtility
         }
         void editTextColor(KeyPressEventArgs e)
         {
+            if (textBoxInput.TextLength >= textBoxMain.TextLength) // outofbounds crash
+            {
+                string removeLastLetter = textBoxInput.Text;
+                removeLastLetter = removeLastLetter.Remove(removeLastLetter.Length - 1, 1);
+                textBoxInput.Text = removeLastLetter;
+                textBoxInput.SelectionStart = textBoxInput.TextLength;
+                textBoxInput.SelectionLength = 0;
+                textBoxInput.Select();
+                return;
+            }
             if (textBoxInput.TextLength != courrentPosition)
             {
                 courrentPosition = textBoxInput.TextLength;
@@ -64,15 +74,15 @@ namespace KeyboardTrainingUtility
 
 
             normalUnderline(2, "Black");
-            //textBoxMain.SelectionStart = courrentPosition;
-            //textBoxMain.SelectionLength = 2;
-            //textBoxMain.SelectionColor = Color.Black;
-            //textBoxMain.SelectionFont = new Font("Microsoft Sans Serif", 13, FontStyle.Underline);
 
 
             if (e.KeyChar == (char)Keys.Back) //pressing Backspace  //add esc key
             {
-
+                //if (textBoxInput.TextLength > textBoxMain.TextLength) // outofbounds crash
+                //{
+                //    return;
+                //}
+                
                 if (courrentPosition > 0)
                 {
                     textBoxMain.SelectionStart = courrentPosition;
@@ -94,6 +104,7 @@ namespace KeyboardTrainingUtility
             }
             if (courrentPosition < textBoxMain.TextLength)
             {
+                
                 if (tempStoredText[courrentPosition] == e.KeyChar) //key press logic
                 {
                     textBoxMain.SelectionStart = courrentPosition;
@@ -148,7 +159,7 @@ namespace KeyboardTrainingUtility
             tempSentanceInput = "";
             tempPressedKey = "";
             courrentPosition = 0;
-            //tempStoredText = "";
+            tempStoredText = "";
             textBoxInput.Text = "";
         }
 
