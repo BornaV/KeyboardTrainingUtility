@@ -43,12 +43,16 @@ namespace KeyboardTrainingUtility
         }
         private void startButton_Click(object sender, EventArgs e)
         {
-
+            setTextBoxText();
+            textBoxInput.Focus();
         }
 
         
         void setTextBoxText()
         {
+            totalReset();
+            tempStoredText = Clipboard.GetText();
+            textBoxMain.Text = tempStoredText;
 
         }
         void editTextColor(KeyPressEventArgs e)
@@ -141,7 +145,11 @@ namespace KeyboardTrainingUtility
         }
         void totalReset()
         {
-            
+            tempSentanceInput = "";
+            tempPressedKey = "";
+            courrentPosition = 0;
+            //tempStoredText = "";
+            textBoxInput.Text = "";
         }
 
         
