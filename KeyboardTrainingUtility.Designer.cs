@@ -29,8 +29,9 @@
         private void InitializeComponent()
         {
             this.textBoxMain = new System.Windows.Forms.RichTextBox();
-            this.startButton = new System.Windows.Forms.Button();
+            this.buttonAddText = new System.Windows.Forms.Button();
             this.textBoxInput = new System.Windows.Forms.RichTextBox();
+            this.buttonRandomText = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // textBoxMain
@@ -47,16 +48,16 @@
             this.textBoxMain.Text = "";
             this.textBoxMain.Enter += new System.EventHandler(this.textBoxMain_Enter);
             // 
-            // startButton
+            // buttonAddText
             // 
-            this.startButton.Location = new System.Drawing.Point(30, 378);
-            this.startButton.Margin = new System.Windows.Forms.Padding(2);
-            this.startButton.Name = "startButton";
-            this.startButton.Size = new System.Drawing.Size(94, 38);
-            this.startButton.TabIndex = 1;
-            this.startButton.Text = "Add Text";
-            this.startButton.UseVisualStyleBackColor = true;
-            this.startButton.Click += new System.EventHandler(this.startButton_Click);
+            this.buttonAddText.Location = new System.Drawing.Point(30, 378);
+            this.buttonAddText.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonAddText.Name = "buttonAddText";
+            this.buttonAddText.Size = new System.Drawing.Size(64, 40);
+            this.buttonAddText.TabIndex = 1;
+            this.buttonAddText.Text = "Add Text";
+            this.buttonAddText.UseVisualStyleBackColor = true;
+            this.buttonAddText.Click += new System.EventHandler(this.startButton_Click);
             // 
             // textBoxInput
             // 
@@ -70,13 +71,25 @@
             this.textBoxInput.Text = "";
             this.textBoxInput.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxInput_KeyPress);
             // 
+            // buttonRandomText
+            // 
+            this.buttonRandomText.Location = new System.Drawing.Point(98, 378);
+            this.buttonRandomText.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonRandomText.Name = "buttonRandomText";
+            this.buttonRandomText.Size = new System.Drawing.Size(110, 40);
+            this.buttonRandomText.TabIndex = 1;
+            this.buttonRandomText.Text = "Add Random Text";
+            this.buttonRandomText.UseVisualStyleBackColor = true;
+            this.buttonRandomText.Click += new System.EventHandler(this.buttonRadnomText_Click);
+            // 
             // mainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(822, 464);
+            this.Controls.Add(this.buttonRandomText);
             this.Controls.Add(this.textBoxMain);
-            this.Controls.Add(this.startButton);
+            this.Controls.Add(this.buttonAddText);
             this.Controls.Add(this.textBoxInput);
             this.Name = "mainWindow";
             this.Text = "Keyboard Training Utility";
@@ -88,8 +101,9 @@
         #endregion
 
         public System.Windows.Forms.RichTextBox textBoxMain;
-        private System.Windows.Forms.Button startButton;
         private System.Windows.Forms.RichTextBox textBoxInput;
+        private System.Windows.Forms.Button buttonRandomText;
+        private System.Windows.Forms.Button buttonAddText;
     }
 }
 

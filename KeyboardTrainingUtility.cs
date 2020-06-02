@@ -46,8 +46,13 @@ namespace KeyboardTrainingUtility
             setTextBoxText();
             textBoxInput.Focus();
         }
+        private void buttonRadnomText_Click(object sender, EventArgs e)
+        {
+            ranSentance();
+            textBoxInput.Focus();
+        }
 
-        
+
         void setTextBoxText()
         {
             totalReset();
@@ -174,6 +179,54 @@ namespace KeyboardTrainingUtility
             }
             textBoxMain.SelectionFont = new Font("Microsoft Sans Serif", 13, FontStyle.Regular);
         }
+
+        void ranSentance()
+        {
+            totalReset();
+
+
+            string[] article = { "the", "a", "one", "some", "any", };
+            string[] noun = { "boy", "girl", "dog", "town", "car", };
+            string[] verb = { "drove", "jumped", "ran", "walked", "skipped", };
+            string[] preposition = { "to", "from", "over", "under", "on", };
+
+            Random rndarticle = new Random();
+            Random rndnoun = new Random();
+            Random rndverb = new Random();
+            Random rndpreposition = new Random();
+            Random rndLayout = new Random();
+
+            int randomArticle = rndarticle.Next(article.Length);
+            int randomNoun = rndnoun.Next(noun.Length);
+            int randomVerb = rndverb.Next(verb.Length);
+            int randoPreposition = rndpreposition.Next(preposition.Length);
+            int randomLayout = rndLayout.Next(2); //amount switch case cases
+
+            switch (randomLayout)
+            {
+                case 1:
+                    tempStoredText = $"{article[randomArticle]} {noun[randomNoun]} {verb[randomVerb]} {preposition[randoPreposition]} {noun[randomNoun]}.";
+                    break;
+                //case 2:
+                //    tempStoredText = $"{article[randomArticle]} {noun[randomNoun]}.";
+                //    break;
+                //case 3:
+                //    tempStoredText = $"{article[randomArticle]} {noun[randomNoun]}.";
+                //    break;
+                //case 4:
+                //    tempStoredText = $"{article[randomArticle]} {noun[randomNoun]}.";
+                //    break;
+                default:
+                    tempStoredText = $"{article[randomArticle]} {noun[randomNoun]}.";
+                    break;
+            }
+
+            //Console.WriteLine("{0} {1}", article[randomarticle], noun[randomnoun]);
+            //tempStoredText = $"{article[randomArticle]} {noun[randomNoun]}.";
+            textBoxMain.Text = tempStoredText;
+
+        }
+
         void totalReset()
         {
             tempSentanceInput = "";
