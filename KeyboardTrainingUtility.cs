@@ -51,6 +51,11 @@ namespace KeyboardTrainingUtility
             ranSentance();
             textBoxInput.Focus();
         }
+        private void buttonRadnomLetter_Click(object sender, EventArgs e)
+        {
+            ranLetter(50, true);
+            textBoxInput.Focus();
+        }
 
 
         void setTextBoxText()
@@ -179,7 +184,47 @@ namespace KeyboardTrainingUtility
             }
             textBoxMain.SelectionFont = new Font("Microsoft Sans Serif", 13, FontStyle.Regular);
         }
+        void ranLetter(int length, bool includeUpper) //random scharacter generator
+        {
+            totalReset();
+            char[] letter = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
+            char[] letterUpper = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
+            Random rndLetter = new Random();
+            Random rndLetterUpper = new Random();
+            Random gen = new Random();
+            int prob = gen.Next(100);
+            if (includeUpper == true)
+            {
 
+                
+                for (int i = 0; i < length; i++)
+                {
+                    if (gen.Next(100) < 99) // determens the percantage of the upper letters (100) < 40 40 persent that the letter is upper case
+                    {
+                        int randomLetterUpper = rndLetterUpper.Next(letterUpper.Length);
+                        tempStoredText = tempStoredText + $"{letterUpper[randomLetterUpper]}";
+
+                    }
+                    else
+                    {
+                        int randomLetter = rndLetter.Next(letter.Length);
+                        tempStoredText = tempStoredText + $"{letter[randomLetter]}";
+                    }
+                }
+            } else
+            {
+                for (int i = 0; i < length; i++)
+                {
+
+                    int randomLetter = rndLetter.Next(letter.Length);
+                    tempStoredText = tempStoredText + $"{letter[randomLetter]}";
+                }
+            }
+
+
+
+            textBoxMain.Text = tempStoredText;
+        }
         void ranSentance()
         {
             totalReset();
@@ -190,16 +235,16 @@ namespace KeyboardTrainingUtility
             string[] verb = { "drove", "jumped", "ran", "walked", "skipped", };
             string[] preposition = { "to", "from", "over", "under", "on", };
 
-            Random rndarticle = new Random();
-            Random rndnoun = new Random();
-            Random rndverb = new Random();
-            Random rndpreposition = new Random();
+            Random rndArticle = new Random();
+            Random rndNoun = new Random();
+            Random rndVerb = new Random();
+            Random rndPreposition = new Random();
             Random rndLayout = new Random();
 
-            int randomArticle = rndarticle.Next(article.Length);
-            int randomNoun = rndnoun.Next(noun.Length);
-            int randomVerb = rndverb.Next(verb.Length);
-            int randoPreposition = rndpreposition.Next(preposition.Length);
+            int randomArticle = rndArticle.Next(article.Length);
+            int randomNoun = rndNoun.Next(noun.Length);
+            int randomVerb = rndVerb.Next(verb.Length);
+            int randoPreposition = rndPreposition.Next(preposition.Length);
             int randomLayout = rndLayout.Next(2); //amount switch case cases
 
             switch (randomLayout)

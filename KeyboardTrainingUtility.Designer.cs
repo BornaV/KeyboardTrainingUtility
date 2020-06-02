@@ -32,6 +32,7 @@
             this.buttonAddText = new System.Windows.Forms.Button();
             this.textBoxInput = new System.Windows.Forms.RichTextBox();
             this.buttonRandomText = new System.Windows.Forms.Button();
+            this.buttonRandomLetter = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // textBoxMain
@@ -82,11 +83,23 @@
             this.buttonRandomText.UseVisualStyleBackColor = true;
             this.buttonRandomText.Click += new System.EventHandler(this.buttonRadnomText_Click);
             // 
+            // buttonRandomLetter
+            // 
+            this.buttonRandomLetter.Location = new System.Drawing.Point(212, 378);
+            this.buttonRandomLetter.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonRandomLetter.Name = "buttonRandomLetter";
+            this.buttonRandomLetter.Size = new System.Drawing.Size(110, 40);
+            this.buttonRandomLetter.TabIndex = 1;
+            this.buttonRandomLetter.Text = "Add Random Letter Sequance";
+            this.buttonRandomLetter.UseVisualStyleBackColor = true;
+            this.buttonRandomLetter.Click += new System.EventHandler(this.buttonRadnomLetter_Click);
+            // 
             // mainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(822, 464);
+            this.Controls.Add(this.buttonRandomLetter);
             this.Controls.Add(this.buttonRandomText);
             this.Controls.Add(this.textBoxMain);
             this.Controls.Add(this.buttonAddText);
@@ -104,6 +117,7 @@
         private System.Windows.Forms.RichTextBox textBoxInput;
         private System.Windows.Forms.Button buttonRandomText;
         private System.Windows.Forms.Button buttonAddText;
+        private System.Windows.Forms.Button buttonRandomLetter;
     }
 }
 
