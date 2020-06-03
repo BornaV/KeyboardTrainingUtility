@@ -33,8 +33,11 @@
             this.textBoxInput = new System.Windows.Forms.RichTextBox();
             this.buttonRandomText = new System.Windows.Forms.Button();
             this.buttonRandomLetter = new System.Windows.Forms.Button();
-            this.includeUpperCase = new System.Windows.Forms.CheckBox();
             this.textBoxAmount = new System.Windows.Forms.TextBox();
+            this.trackBarUpperCase = new System.Windows.Forms.TrackBar();
+            this.labelTrackBarValue = new System.Windows.Forms.Label();
+            this.labelAmount = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarUpperCase)).BeginInit();
             this.SuspendLayout();
             // 
             // textBoxMain
@@ -56,7 +59,7 @@
             this.buttonAddText.Location = new System.Drawing.Point(30, 378);
             this.buttonAddText.Margin = new System.Windows.Forms.Padding(2);
             this.buttonAddText.Name = "buttonAddText";
-            this.buttonAddText.Size = new System.Drawing.Size(64, 40);
+            this.buttonAddText.Size = new System.Drawing.Size(64, 45);
             this.buttonAddText.TabIndex = 1;
             this.buttonAddText.Text = "Add Text";
             this.buttonAddText.UseVisualStyleBackColor = true;
@@ -79,7 +82,7 @@
             this.buttonRandomText.Location = new System.Drawing.Point(98, 378);
             this.buttonRandomText.Margin = new System.Windows.Forms.Padding(2);
             this.buttonRandomText.Name = "buttonRandomText";
-            this.buttonRandomText.Size = new System.Drawing.Size(110, 40);
+            this.buttonRandomText.Size = new System.Drawing.Size(110, 45);
             this.buttonRandomText.TabIndex = 1;
             this.buttonRandomText.Text = "Add Random Text";
             this.buttonRandomText.UseVisualStyleBackColor = true;
@@ -90,38 +93,58 @@
             this.buttonRandomLetter.Location = new System.Drawing.Point(212, 378);
             this.buttonRandomLetter.Margin = new System.Windows.Forms.Padding(2);
             this.buttonRandomLetter.Name = "buttonRandomLetter";
-            this.buttonRandomLetter.Size = new System.Drawing.Size(110, 40);
+            this.buttonRandomLetter.Size = new System.Drawing.Size(110, 45);
             this.buttonRandomLetter.TabIndex = 1;
             this.buttonRandomLetter.Text = "Add Random Letter Sequance";
             this.buttonRandomLetter.UseVisualStyleBackColor = true;
             this.buttonRandomLetter.Click += new System.EventHandler(this.buttonRadnomLetter_Click);
             // 
-            // includeUpperCase
-            // 
-            this.includeUpperCase.AutoSize = true;
-            this.includeUpperCase.Location = new System.Drawing.Point(328, 378);
-            this.includeUpperCase.Name = "includeUpperCase";
-            this.includeUpperCase.Size = new System.Drawing.Size(86, 19);
-            this.includeUpperCase.TabIndex = 2;
-            this.includeUpperCase.Text = "Upper Case";
-            this.includeUpperCase.UseVisualStyleBackColor = true;
-            // 
             // textBoxAmount
             // 
-            this.textBoxAmount.Location = new System.Drawing.Point(328, 394);
+            this.textBoxAmount.Location = new System.Drawing.Point(478, 378);
             this.textBoxAmount.Name = "textBoxAmount";
             this.textBoxAmount.Size = new System.Drawing.Size(32, 23);
             this.textBoxAmount.TabIndex = 3;
             this.textBoxAmount.Text = "50";
             this.textBoxAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
+            // trackBarUpperCase
+            // 
+            this.trackBarUpperCase.LargeChange = 1;
+            this.trackBarUpperCase.Location = new System.Drawing.Point(327, 378);
+            this.trackBarUpperCase.Maximum = 100;
+            this.trackBarUpperCase.Name = "trackBarUpperCase";
+            this.trackBarUpperCase.Size = new System.Drawing.Size(145, 45);
+            this.trackBarUpperCase.TabIndex = 4;
+            this.trackBarUpperCase.ValueChanged += new System.EventHandler(this.trackBarUpperCase_ValueChanged);
+            // 
+            // labelTrackBarValue
+            // 
+            this.labelTrackBarValue.AutoSize = true;
+            this.labelTrackBarValue.Location = new System.Drawing.Point(333, 408);
+            this.labelTrackBarValue.Name = "labelTrackBarValue";
+            this.labelTrackBarValue.Size = new System.Drawing.Size(139, 15);
+            this.labelTrackBarValue.TabIndex = 5;
+            this.labelTrackBarValue.Text = "Upper Case Amount: 0 %";
+            // 
+            // labelAmount
+            // 
+            this.labelAmount.AutoSize = true;
+            this.labelAmount.Location = new System.Drawing.Point(478, 408);
+            this.labelAmount.Name = "labelAmount";
+            this.labelAmount.Size = new System.Drawing.Size(51, 15);
+            this.labelAmount.TabIndex = 6;
+            this.labelAmount.Text = "Amount";
+            // 
             // mainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(822, 464);
+            this.Controls.Add(this.labelAmount);
+            this.Controls.Add(this.labelTrackBarValue);
+            this.Controls.Add(this.trackBarUpperCase);
             this.Controls.Add(this.textBoxAmount);
-            this.Controls.Add(this.includeUpperCase);
             this.Controls.Add(this.buttonRandomLetter);
             this.Controls.Add(this.buttonRandomText);
             this.Controls.Add(this.textBoxMain);
@@ -130,6 +153,7 @@
             this.Name = "mainWindow";
             this.Text = "Keyboard Training Utility";
             this.Enter += new System.EventHandler(this.mainWindow_Enter);
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarUpperCase)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -142,8 +166,10 @@
         private System.Windows.Forms.Button buttonRandomText;
         private System.Windows.Forms.Button buttonAddText;
         private System.Windows.Forms.Button buttonRandomLetter;
-        private System.Windows.Forms.CheckBox includeUpperCase;
         private System.Windows.Forms.TextBox textBoxAmount;
+        public System.Windows.Forms.TrackBar trackBarUpperCase;
+        private System.Windows.Forms.Label labelTrackBarValue;
+        private System.Windows.Forms.Label labelAmount;
     }
 }
 

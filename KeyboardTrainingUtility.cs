@@ -57,8 +57,7 @@ namespace KeyboardTrainingUtility
         private void buttonRadnomLetter_Click(object sender, EventArgs e)
         {
             lastGenerator = "Letter";
-            ranLetter(textBoxAmount.Text, includeUpperCase.Checked);
-            //ranLetter(50, true);////////////////////////////////////////////////////////////////////////
+            ranLetter(textBoxAmount.Text);
             textBoxInput.Focus();
         }
 
@@ -83,7 +82,7 @@ namespace KeyboardTrainingUtility
                             ranSentance();
                             break;
                         case "Letter":
-                            ranLetter(textBoxAmount.Text, includeUpperCase.Checked);
+                            ranLetter(textBoxAmount.Text);
                             break;
                         default:
                             break;
@@ -210,7 +209,7 @@ namespace KeyboardTrainingUtility
             }
             textBoxMain.SelectionFont = new Font("Microsoft Sans Serif", 13, FontStyle.Regular);
         }
-        void ranLetter(string STLength, bool includeUpper) //random scharacter generator
+        void ranLetter(string STLength) //random scharacter generator
         {
             int length = Convert.ToInt32(STLength);
             totalReset();
@@ -220,13 +219,9 @@ namespace KeyboardTrainingUtility
             Random rndLetterUpper = new Random();
             Random gen = new Random();
             int prob = gen.Next(100);
-            if (includeUpper == true)
-            {
-
-                
-                for (int i = 0; i < length; i++)
+            for (int i = 0; i < length; i++)
                 {
-                    if (gen.Next(100) < 25) // determens the percantage of the upper letters (100) < 40 40 persent that the letter is upper case
+                    if (gen.Next(100) < trackBarUpperCase.Value) // determens the percantage of the upper letters (100) < 40 40 persent that the letter is upper case
                     {
                         int randomLetterUpper = rndLetterUpper.Next(letterUpper.Length);
                         tempStoredText = tempStoredText + $"{letterUpper[randomLetterUpper]}";
@@ -238,18 +233,7 @@ namespace KeyboardTrainingUtility
                         tempStoredText = tempStoredText + $"{letter[randomLetter]}";
                     }
                 }
-            } else
-            {
-                for (int i = 0; i < length; i++)
-                {
-
-                    int randomLetter = rndLetter.Next(letter.Length);
-                    tempStoredText = tempStoredText + $"{letter[randomLetter]}";
-                }
-            }
-
-
-
+            
             textBoxMain.Text = tempStoredText;
         }
         void ranSentance()
@@ -259,7 +243,7 @@ namespace KeyboardTrainingUtility
             string[] noun = { "boy", "girl", "dog", "town", "car", };
             string[] verb = { "drove", "jumped", "ran", "walked", "skipped", };
             string[] preposition = { "to", "from", "over", "under", "on", };
-
+            
             Random rndArticle = new Random();
             Random rndNoun = new Random();
             Random rndVerb = new Random();
@@ -291,8 +275,6 @@ namespace KeyboardTrainingUtility
                     break;
             }
 
-            //Console.WriteLine("{0} {1}", article[randomarticle], noun[randomnoun]);
-            //tempStoredText = $"{article[randomArticle]} {noun[randomNoun]}.";
             textBoxMain.Text = tempStoredText;
 
         }
@@ -314,6 +296,9 @@ namespace KeyboardTrainingUtility
             textBoxInput.Text = "";
         }
 
-        
+        private void trackBarUpperCase_ValueChanged(object sender, EventArgs e)
+        {
+            labelTrackBarValue.Text = $"Upper Case Amount: {Convert.ToString(trackBarUpperCase.Value)} %";
+        }
     }
 }
