@@ -213,8 +213,10 @@ namespace KeyboardTrainingUtility
         {
             int length = Convert.ToInt32(STLength);
             totalReset();
-            char[] letter = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
-            char[] letterUpper = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
+            Data rndSentanceData = new Data();
+
+            //char[] rndSentanceData.letter = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
+            //char[] rndSentanceData.letterUpper = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
             Random rndLetter = new Random();
             Random rndLetterUpper = new Random();
             Random gen = new Random();
@@ -223,46 +225,63 @@ namespace KeyboardTrainingUtility
                 {
                     if (gen.Next(100) < trackBarUpperCase.Value) // determens the percantage of the upper letters (100) < 40 40 persent that the letter is upper case
                     {
-                        int randomLetterUpper = rndLetterUpper.Next(letterUpper.Length);
-                        tempStoredText = tempStoredText + $"{letterUpper[randomLetterUpper]}";
+                        int randomLetterUpper = rndLetterUpper.Next(rndSentanceData.letterUpper.Length);
+                        tempStoredText = tempStoredText + $"{rndSentanceData.letterUpper[randomLetterUpper]}";
 
                     }
                     else
                     {
-                        int randomLetter = rndLetter.Next(letter.Length);
-                        tempStoredText = tempStoredText + $"{letter[randomLetter]}";
+                        int randomLetter = rndLetter.Next(rndSentanceData.letter.Length);
+                        tempStoredText = tempStoredText + $"{rndSentanceData.letter[randomLetter]}";
                     }
                 }
             
             textBoxMain.Text = tempStoredText;
         }
+        void randomizeSamples()
+        {
+            Data data = new Data();
+
+        }
         void ranSentance()
         {
             totalReset();
-            string[] article = { "the", "a", "one", "some", "any", }; //add a bunch more :)
-            string[] noun = { "boy", "girl", "dog", "town", "car", };
-            string[] verb = { "drove", "jumped", "ran", "walked", "skipped", };
-            string[] preposition = { "to", "from", "over", "under", "on", };
-            
+
+
+
+            //string[] data.article = { "the", "a", "one", "some", "any", }; //add a bunch more :)
+            //string[] data.noun = { "boy", "girl", "dog", "town", "car", };
+            //string[] data.verb = { "drove", "jumped", "ran", "walked", "skipped", };
+            //string[] data.preposition = { "to", "from", "over", "under", "on", };
+
+
+            Data data = new Data();
             Random rndArticle = new Random();
             Random rndNoun = new Random();
             Random rndVerb = new Random();
             Random rndPreposition = new Random();
             Random rndLayout = new Random();
 
-            int randomArticle = rndArticle.Next(article.Length);
-            int randomNoun = rndNoun.Next(noun.Length);
-            int randomVerb = rndVerb.Next(verb.Length);
-            int randoPreposition = rndPreposition.Next(preposition.Length);
+            int randomArticle = rndArticle.Next(data.article.Length);
+            int randomNoun = rndNoun.Next(data.noun.Length);
+            int randomVerb = rndVerb.Next(data.verb.Length);
+            int randoPreposition = rndPreposition.Next(data.preposition.Length);
             int randomLayout = rndLayout.Next(3); //amount switch case cases
 
             switch (randomLayout)
             {
                 case 1:
-                    tempStoredText = $"{article[randomArticle]} {noun[randomNoun]} {verb[randomVerb]} {preposition[randoPreposition]} {noun[randomNoun]}.";
+                    tempStoredText = tempStoredText + $"{data.article[randomArticle]} {data.noun[randomNoun]} {data.verb[randomVerb]} {data.preposition[randoPreposition]} ";
+                    randomNoun = rndNoun.Next(data.noun.Length);
+                    tempStoredText = tempStoredText + $"{data.noun[randomNoun]}.";
+                    //tempStoredText = $"{data.article[randomArticle]} {data.noun[randomNoun]} {data.verb[randomVerb]} {data.preposition[randoPreposition]} {data.noun[randomNoun]}.";
                     break;
                 case 2:
-                    tempStoredText = $"{article[randomArticle]} {noun[randomNoun]} {verb[randomVerb]} {preposition[randoPreposition]} {article[randomArticle]} {noun[randomNoun]}.";
+                    tempStoredText = $"{data.article[randomArticle]} {data.noun[randomNoun]} {data.verb[randomVerb]} {data.preposition[randoPreposition]} ";
+                    randomArticle = rndArticle.Next(data.article.Length);
+                    randomNoun = rndNoun.Next(data.noun.Length);
+                    tempStoredText = $"{data.article[randomArticle]} {data.noun[randomNoun]}.";
+                    //tempStoredText = $"{data.article[randomArticle]} {data.noun[randomNoun]} {data.verb[randomVerb]} {data.preposition[randoPreposition]} {data.article[randomArticle]} {data.noun[randomNoun]}.";
                     break;
                 //case 3:
                 //    tempStoredText = $"{article[randomArticle]} {noun[randomNoun]}.";
@@ -271,7 +290,7 @@ namespace KeyboardTrainingUtility
                 //    tempStoredText = $"{article[randomArticle]} {noun[randomNoun]}.";
                 //    break;
                 default:
-                    tempStoredText = $"{article[randomArticle]} {noun[randomNoun]}.";
+                    tempStoredText = $"{data.article[randomArticle]} {data.noun[randomNoun]}.";
                     break;
             }
 
