@@ -15,7 +15,8 @@ namespace KeyboardTrainingUtility
         public string tempSentanceInput;
         public string tempPressedKey;
         public int courrentPosition;
-        public string tempStoredText = Clipboard.GetText();
+        public string lastGenerator;
+        public string tempStoredText;
         
 
 
@@ -43,16 +44,19 @@ namespace KeyboardTrainingUtility
         }
         private void startButton_Click(object sender, EventArgs e)
         {
+            lastGenerator = "Clipboard";
             setTextBoxText();
             textBoxInput.Focus();
         }
         private void buttonRadnomText_Click(object sender, EventArgs e)
         {
+            lastGenerator = "Text";
             ranSentance();
             textBoxInput.Focus();
         }
         private void buttonRadnomLetter_Click(object sender, EventArgs e)
         {
+            lastGenerator = "Letter";
             ranLetter(50, true);
             textBoxInput.Focus();
         }
@@ -65,16 +69,36 @@ namespace KeyboardTrainingUtility
             textBoxMain.Text = tempStoredText;
 
         }
-        void editTextColor(KeyPressEventArgs e)
+        void editTextColor(KeyPressEventArgs e) //what is pressed logic
+        
         {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                if (courrentPosition == textBoxMain.TextLength)
+                {
+                    switch (lastGenerator)
+                    {
+                        case "Text":
+                            ranSentance();
+                            break;
+                        case "Letter":
+                            ranLetter(50, true);
+                            break;
+                        default:
+                            break;
+                    }
+                    return;
+                }
+                else
+                {
+                    removeLastLetter();
+                    return;
+                }
+                
+            }// checks if the sequenc e is complete and adds another
             if (textBoxInput.TextLength >= textBoxMain.TextLength) // outofbounds crash
             {
-                string removeLastLetter = textBoxInput.Text;
-                removeLastLetter = removeLastLetter.Remove(removeLastLetter.Length - 1, 1);
-                textBoxInput.Text = removeLastLetter;
-                textBoxInput.SelectionStart = textBoxInput.TextLength;
-                textBoxInput.SelectionLength = 0;
-                textBoxInput.Select();
+                removeLastLetter();
                 return;
             }
             if (textBoxInput.TextLength != courrentPosition)
@@ -110,6 +134,7 @@ namespace KeyboardTrainingUtility
                 }
                 return;
             }
+            
             if (courrentPosition < textBoxMain.TextLength)
             {
                 
@@ -199,7 +224,7 @@ namespace KeyboardTrainingUtility
                 
                 for (int i = 0; i < length; i++)
                 {
-                    if (gen.Next(100) < 99) // determens the percantage of the upper letters (100) < 40 40 persent that the letter is upper case
+                    if (gen.Next(100) < 25) // determens the percantage of the upper letters (100) < 40 40 persent that the letter is upper case
                     {
                         int randomLetterUpper = rndLetterUpper.Next(letterUpper.Length);
                         tempStoredText = tempStoredText + $"{letterUpper[randomLetterUpper]}";
@@ -228,9 +253,7 @@ namespace KeyboardTrainingUtility
         void ranSentance()
         {
             totalReset();
-
-
-            string[] article = { "the", "a", "one", "some", "any", };
+            string[] article = { "the", "a", "one", "some", "any", }; //add a bunch more :)
             string[] noun = { "boy", "girl", "dog", "town", "car", };
             string[] verb = { "drove", "jumped", "ran", "walked", "skipped", };
             string[] preposition = { "to", "from", "over", "under", "on", };
@@ -245,16 +268,16 @@ namespace KeyboardTrainingUtility
             int randomNoun = rndNoun.Next(noun.Length);
             int randomVerb = rndVerb.Next(verb.Length);
             int randoPreposition = rndPreposition.Next(preposition.Length);
-            int randomLayout = rndLayout.Next(2); //amount switch case cases
+            int randomLayout = rndLayout.Next(3); //amount switch case cases
 
             switch (randomLayout)
             {
                 case 1:
                     tempStoredText = $"{article[randomArticle]} {noun[randomNoun]} {verb[randomVerb]} {preposition[randoPreposition]} {noun[randomNoun]}.";
                     break;
-                //case 2:
-                //    tempStoredText = $"{article[randomArticle]} {noun[randomNoun]}.";
-                //    break;
+                case 2:
+                    tempStoredText = $"{article[randomArticle]} {noun[randomNoun]} {verb[randomVerb]} {preposition[randoPreposition]} {article[randomArticle]} {noun[randomNoun]}.";
+                    break;
                 //case 3:
                 //    tempStoredText = $"{article[randomArticle]} {noun[randomNoun]}.";
                 //    break;
@@ -271,7 +294,15 @@ namespace KeyboardTrainingUtility
             textBoxMain.Text = tempStoredText;
 
         }
-
+        void removeLastLetter()
+        {
+            string removeLastLetter = textBoxInput.Text;
+            removeLastLetter = removeLastLetter.Remove(removeLastLetter.Length - 1, 1);
+            textBoxInput.Text = removeLastLetter;
+            textBoxInput.SelectionStart = textBoxInput.TextLength;
+            textBoxInput.SelectionLength = 0;
+            textBoxInput.Select();
+        }
         void totalReset()
         {
             tempSentanceInput = "";
