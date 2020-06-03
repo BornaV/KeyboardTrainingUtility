@@ -57,7 +57,8 @@ namespace KeyboardTrainingUtility
         private void buttonRadnomLetter_Click(object sender, EventArgs e)
         {
             lastGenerator = "Letter";
-            ranLetter(50, true);
+            ranLetter(textBoxAmount.Text, includeUpperCase.Checked);
+            //ranLetter(50, true);////////////////////////////////////////////////////////////////////////
             textBoxInput.Focus();
         }
 
@@ -82,7 +83,7 @@ namespace KeyboardTrainingUtility
                             ranSentance();
                             break;
                         case "Letter":
-                            ranLetter(50, true);
+                            ranLetter(textBoxAmount.Text, includeUpperCase.Checked);
                             break;
                         default:
                             break;
@@ -209,8 +210,9 @@ namespace KeyboardTrainingUtility
             }
             textBoxMain.SelectionFont = new Font("Microsoft Sans Serif", 13, FontStyle.Regular);
         }
-        void ranLetter(int length, bool includeUpper) //random scharacter generator
+        void ranLetter(string STLength, bool includeUpper) //random scharacter generator
         {
+            int length = Convert.ToInt32(STLength);
             totalReset();
             char[] letter = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
             char[] letterUpper = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };

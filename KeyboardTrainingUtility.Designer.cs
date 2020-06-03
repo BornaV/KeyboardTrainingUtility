@@ -33,6 +33,8 @@
             this.textBoxInput = new System.Windows.Forms.RichTextBox();
             this.buttonRandomText = new System.Windows.Forms.Button();
             this.buttonRandomLetter = new System.Windows.Forms.Button();
+            this.includeUpperCase = new System.Windows.Forms.CheckBox();
+            this.textBoxAmount = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // textBoxMain
@@ -94,11 +96,32 @@
             this.buttonRandomLetter.UseVisualStyleBackColor = true;
             this.buttonRandomLetter.Click += new System.EventHandler(this.buttonRadnomLetter_Click);
             // 
+            // includeUpperCase
+            // 
+            this.includeUpperCase.AutoSize = true;
+            this.includeUpperCase.Location = new System.Drawing.Point(328, 378);
+            this.includeUpperCase.Name = "includeUpperCase";
+            this.includeUpperCase.Size = new System.Drawing.Size(86, 19);
+            this.includeUpperCase.TabIndex = 2;
+            this.includeUpperCase.Text = "Upper Case";
+            this.includeUpperCase.UseVisualStyleBackColor = true;
+            // 
+            // textBoxAmount
+            // 
+            this.textBoxAmount.Location = new System.Drawing.Point(328, 394);
+            this.textBoxAmount.Name = "textBoxAmount";
+            this.textBoxAmount.Size = new System.Drawing.Size(32, 23);
+            this.textBoxAmount.TabIndex = 3;
+            this.textBoxAmount.Text = "50";
+            this.textBoxAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
             // mainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(822, 464);
+            this.Controls.Add(this.textBoxAmount);
+            this.Controls.Add(this.includeUpperCase);
             this.Controls.Add(this.buttonRandomLetter);
             this.Controls.Add(this.buttonRandomText);
             this.Controls.Add(this.textBoxMain);
@@ -108,6 +131,7 @@
             this.Text = "Keyboard Training Utility";
             this.Enter += new System.EventHandler(this.mainWindow_Enter);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -118,6 +142,8 @@
         private System.Windows.Forms.Button buttonRandomText;
         private System.Windows.Forms.Button buttonAddText;
         private System.Windows.Forms.Button buttonRandomLetter;
+        private System.Windows.Forms.CheckBox includeUpperCase;
+        private System.Windows.Forms.TextBox textBoxAmount;
     }
 }
 
