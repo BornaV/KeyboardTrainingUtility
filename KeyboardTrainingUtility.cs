@@ -337,6 +337,7 @@ namespace KeyboardTrainingUtility
         }
         void removeLastLetter()
         {
+            if (textBoxInput.TextLength == 0) { return; };
             string removeLastLetter = textBoxInput.Text;
             removeLastLetter = removeLastLetter.Remove(removeLastLetter.Length - 1, 1);
             textBoxInput.Text = removeLastLetter;

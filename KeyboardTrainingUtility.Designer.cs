@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(mainWindow));
             this.textBoxMain = new System.Windows.Forms.RichTextBox();
             this.buttonAddText = new System.Windows.Forms.Button();
             this.textBoxInput = new System.Windows.Forms.RichTextBox();
@@ -104,7 +105,7 @@
             // 
             this.textBoxAmount.Location = new System.Drawing.Point(459, 241);
             this.textBoxAmount.Name = "textBoxAmount";
-            this.textBoxAmount.Size = new System.Drawing.Size(32, 23);
+            this.textBoxAmount.Size = new System.Drawing.Size(24, 23);
             this.textBoxAmount.TabIndex = 3;
             this.textBoxAmount.Text = "50";
             this.textBoxAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -164,6 +165,7 @@
             this.Controls.Add(this.buttonAddText);
             this.Controls.Add(this.textBoxInput);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "mainWindow";
