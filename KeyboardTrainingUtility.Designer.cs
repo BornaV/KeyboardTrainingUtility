@@ -153,6 +153,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(824, 301);
+            this.Controls.Add(this.textBoxMain);
             this.Controls.Add(this.checkBoxRenew);
             this.Controls.Add(this.labelAmount);
             this.Controls.Add(this.labelTrackBarValue);
@@ -162,7 +163,6 @@
             this.Controls.Add(this.buttonRandomText);
             this.Controls.Add(this.buttonAddText);
             this.Controls.Add(this.textBoxInput);
-            this.Controls.Add(this.textBoxMain);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
