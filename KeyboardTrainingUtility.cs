@@ -15,6 +15,7 @@ namespace KeyboardTrainingUtility
         public string tempSentanceInput;
         public string tempPressedKey;
         public int courrentPosition;
+        public bool checkBoxUtilized;
         public string lastGenerator;
         public string tempStoredText;
         
@@ -23,6 +24,8 @@ namespace KeyboardTrainingUtility
         public mainWindow()
         {
             InitializeComponent();
+            lastGenerator = "Text";     //
+            ranSentance();              //first boot text type
             textBoxMain.Text = tempStoredText;
             textBoxInput.Focus();
             normalUnderline();
@@ -39,6 +42,10 @@ namespace KeyboardTrainingUtility
             textBoxInput.Focus();
         }
         private void mainWindow_Enter(object sender, EventArgs e)
+        {
+            textBoxInput.Focus();
+        }
+        private void checkBoxRenew_Enter(object sender, EventArgs e)
         {
             textBoxInput.Focus();
         }
@@ -72,6 +79,13 @@ namespace KeyboardTrainingUtility
         void editTextColor(KeyPressEventArgs e) //what is pressed logic
         
         {
+            if (checkBoxUtilized)
+            {
+                textBoxInput.Text = "";
+                checkBoxUtilized = false;
+            }
+            
+            if (e.KeyChar == (char)Keys.Escape){return;}
             if (e.KeyChar == (char)Keys.Enter)
             {
                 if (courrentPosition == textBoxMain.TextLength)
@@ -119,7 +133,7 @@ namespace KeyboardTrainingUtility
                     //textBoxMain.SelectionStart = courrentPosition;
                     //textBoxMain.SelectionLength = textBoxMain.TextLength - courrentPosition;
                     //textBoxMain.SelectionColor = Color.Black;
-                    //textBoxMain.SelectionFont = new Font("Microsoft Sans Serif", 13, FontStyle.Regular); //make everithing in front of the selected 
+                    //textBoxMain.SelectionFont = new Font("Microsoft Sans Serif", 14, FontStyle.Regular); //make everithing in front of the selected 
                     normalUnderline();//make sure that the underline is 
                     courrentPosition--;
                 }
@@ -129,7 +143,7 @@ namespace KeyboardTrainingUtility
                     //textBoxMain.SelectionStart = courrentPosition;
                     //textBoxMain.SelectionLength = textBoxMain.TextLength - courrentPosition;
                     //textBoxMain.SelectionColor = Color.Black;
-                    textBoxMain.SelectionFont = new Font("Microsoft Sans Serif", 13, FontStyle.Regular);
+                    textBoxMain.SelectionFont = new Font("Microsoft Sans Serif", 14, FontStyle.Regular);
                     return;
                 }
                 return;
@@ -151,6 +165,27 @@ namespace KeyboardTrainingUtility
                 }
 
             }
+            if (checkBoxRenew.Checked && courrentPosition == textBoxMain.TextLength)
+            {
+                switch (lastGenerator)
+                {
+                    case "Text":
+                        ranSentance();
+                        textBoxInput.Text = "";
+                        break;
+                    case "Letter":
+                        ranLetter(textBoxAmount.Text);
+                        textBoxInput.Text = "";
+                        break;
+                    default:
+                        ranSentance();
+                        break;
+                }
+                checkBoxUtilized = true;
+                return;
+
+            }
+
 
         }
         void normalUnderline() //underlines the courrent selected letter, length is the amount of letters selected, color is what color the selected pice is;
@@ -158,7 +193,7 @@ namespace KeyboardTrainingUtility
             textBoxMain.SelectionStart = courrentPosition;
             textBoxMain.SelectionLength = 1;
             textBoxMain.SelectionColor = Color.Black;
-            textBoxMain.SelectionFont = new Font("Microsoft Sans Serif", 13, FontStyle.Underline);
+            textBoxMain.SelectionFont = new Font("Microsoft Sans Serif", 14, FontStyle.Underline);
         }
         void normalUnderline(int length, char color) //underlines the courrent selected letter, length is the amount of letters selected, color is what color the selected pice is;
         {
@@ -179,14 +214,14 @@ namespace KeyboardTrainingUtility
                     textBoxMain.SelectionColor = Color.Black;
                     break;
             }
-            textBoxMain.SelectionFont = new Font("Microsoft Sans Serif", 13, FontStyle.Underline);
+            textBoxMain.SelectionFont = new Font("Microsoft Sans Serif", 14, FontStyle.Underline);
         }
         void letterColor() //colors the selected letter depending on the input
         {
             textBoxMain.SelectionStart = courrentPosition;
             textBoxMain.SelectionLength = 1;
             textBoxMain.SelectionColor = Color.Black;
-            textBoxMain.SelectionFont = new Font("Microsoft Sans Serif", 13, FontStyle.Regular);
+            textBoxMain.SelectionFont = new Font("Microsoft Sans Serif", 14, FontStyle.Regular);
         }
         void letterColor(int length, char color) //colors the selected letter depending on the input
         {
@@ -207,7 +242,7 @@ namespace KeyboardTrainingUtility
                     textBoxMain.SelectionColor = Color.Black;
                     break;
             }
-            textBoxMain.SelectionFont = new Font("Microsoft Sans Serif", 13, FontStyle.Regular);
+            textBoxMain.SelectionFont = new Font("Microsoft Sans Serif", 14, FontStyle.Regular);
         }
         void ranLetter(string STLength) //random scharacter generator
         {
@@ -273,19 +308,22 @@ namespace KeyboardTrainingUtility
                 case 1:
                     tempStoredText = tempStoredText + $"{data.article[randomArticle]} {data.noun[randomNoun]} {data.verb[randomVerb]} {data.preposition[randoPreposition]} ";
                     randomNoun = rndNoun.Next(data.noun.Length);
-                    tempStoredText = tempStoredText + $"{data.noun[randomNoun]}.";
+                    tempStoredText = tempStoredText + $"{data.noun[randomNoun]}";
                     //tempStoredText = $"{data.article[randomArticle]} {data.noun[randomNoun]} {data.verb[randomVerb]} {data.preposition[randoPreposition]} {data.noun[randomNoun]}.";
                     break;
                 case 2:
                     tempStoredText = $"{data.article[randomArticle]} {data.noun[randomNoun]} {data.verb[randomVerb]} {data.preposition[randoPreposition]} ";
                     randomArticle = rndArticle.Next(data.article.Length);
                     randomNoun = rndNoun.Next(data.noun.Length);
-                    tempStoredText = $"{data.article[randomArticle]} {data.noun[randomNoun]}.";
+                    tempStoredText = $"{data.article[randomArticle]} {data.noun[randomNoun]}";
                     //tempStoredText = $"{data.article[randomArticle]} {data.noun[randomNoun]} {data.verb[randomVerb]} {data.preposition[randoPreposition]} {data.article[randomArticle]} {data.noun[randomNoun]}.";
                     break;
-                //case 3:
-                //    tempStoredText = $"{article[randomArticle]} {noun[randomNoun]}.";
-                //    break;
+                case 3:
+                    tempStoredText = $"{data.article[randomArticle]} {data.noun[randomNoun]} {data.verb[randomVerb]} {data.preposition[randoPreposition]} ";
+                    randomArticle = rndArticle.Next(data.article.Length);
+                    randomNoun = rndNoun.Next(data.noun.Length);
+                    tempStoredText = $"{data.article[randomArticle]} {data.noun[randomNoun]}";
+                    break;
                 //case 4:
                 //    tempStoredText = $"{article[randomArticle]} {noun[randomNoun]}.";
                 //    break;
@@ -306,6 +344,7 @@ namespace KeyboardTrainingUtility
             textBoxInput.SelectionLength = 0;
             textBoxInput.Select();
         }
+        
         void totalReset()
         {
             tempSentanceInput = "";
@@ -319,5 +358,7 @@ namespace KeyboardTrainingUtility
         {
             labelTrackBarValue.Text = $"Upper Case Amount: {Convert.ToString(trackBarUpperCase.Value)} %";
         }
+
+        
     }
 }

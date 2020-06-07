@@ -37,15 +37,16 @@
             this.trackBarUpperCase = new System.Windows.Forms.TrackBar();
             this.labelTrackBarValue = new System.Windows.Forms.Label();
             this.labelAmount = new System.Windows.Forms.Label();
+            this.checkBoxRenew = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarUpperCase)).BeginInit();
             this.SuspendLayout();
             // 
             // textBoxMain
             // 
             this.textBoxMain.DetectUrls = false;
-            this.textBoxMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.textBoxMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.textBoxMain.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.textBoxMain.Location = new System.Drawing.Point(11, 26);
+            this.textBoxMain.Location = new System.Drawing.Point(11, 11);
             this.textBoxMain.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxMain.Name = "textBoxMain";
             this.textBoxMain.ReadOnly = true;
@@ -56,7 +57,7 @@
             // 
             // buttonAddText
             // 
-            this.buttonAddText.Location = new System.Drawing.Point(30, 378);
+            this.buttonAddText.Location = new System.Drawing.Point(11, 241);
             this.buttonAddText.Margin = new System.Windows.Forms.Padding(2);
             this.buttonAddText.Name = "buttonAddText";
             this.buttonAddText.Size = new System.Drawing.Size(64, 45);
@@ -70,7 +71,7 @@
             this.textBoxInput.BackColor = System.Drawing.Color.WhiteSmoke;
             this.textBoxInput.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxInput.DetectUrls = false;
-            this.textBoxInput.Location = new System.Drawing.Point(12, 231);
+            this.textBoxInput.Location = new System.Drawing.Point(12, 115);
             this.textBoxInput.Name = "textBoxInput";
             this.textBoxInput.Size = new System.Drawing.Size(516, 96);
             this.textBoxInput.TabIndex = 1;
@@ -79,7 +80,7 @@
             // 
             // buttonRandomText
             // 
-            this.buttonRandomText.Location = new System.Drawing.Point(98, 378);
+            this.buttonRandomText.Location = new System.Drawing.Point(79, 241);
             this.buttonRandomText.Margin = new System.Windows.Forms.Padding(2);
             this.buttonRandomText.Name = "buttonRandomText";
             this.buttonRandomText.Size = new System.Drawing.Size(110, 45);
@@ -90,7 +91,7 @@
             // 
             // buttonRandomLetter
             // 
-            this.buttonRandomLetter.Location = new System.Drawing.Point(212, 378);
+            this.buttonRandomLetter.Location = new System.Drawing.Point(193, 241);
             this.buttonRandomLetter.Margin = new System.Windows.Forms.Padding(2);
             this.buttonRandomLetter.Name = "buttonRandomLetter";
             this.buttonRandomLetter.Size = new System.Drawing.Size(110, 45);
@@ -101,7 +102,7 @@
             // 
             // textBoxAmount
             // 
-            this.textBoxAmount.Location = new System.Drawing.Point(478, 378);
+            this.textBoxAmount.Location = new System.Drawing.Point(459, 241);
             this.textBoxAmount.Name = "textBoxAmount";
             this.textBoxAmount.Size = new System.Drawing.Size(32, 23);
             this.textBoxAmount.TabIndex = 3;
@@ -111,7 +112,7 @@
             // trackBarUpperCase
             // 
             this.trackBarUpperCase.LargeChange = 1;
-            this.trackBarUpperCase.Location = new System.Drawing.Point(327, 378);
+            this.trackBarUpperCase.Location = new System.Drawing.Point(308, 241);
             this.trackBarUpperCase.Maximum = 100;
             this.trackBarUpperCase.Name = "trackBarUpperCase";
             this.trackBarUpperCase.Size = new System.Drawing.Size(145, 45);
@@ -121,7 +122,7 @@
             // labelTrackBarValue
             // 
             this.labelTrackBarValue.AutoSize = true;
-            this.labelTrackBarValue.Location = new System.Drawing.Point(333, 408);
+            this.labelTrackBarValue.Location = new System.Drawing.Point(314, 271);
             this.labelTrackBarValue.Name = "labelTrackBarValue";
             this.labelTrackBarValue.Size = new System.Drawing.Size(139, 15);
             this.labelTrackBarValue.TabIndex = 5;
@@ -130,26 +131,41 @@
             // labelAmount
             // 
             this.labelAmount.AutoSize = true;
-            this.labelAmount.Location = new System.Drawing.Point(478, 408);
+            this.labelAmount.Location = new System.Drawing.Point(459, 271);
             this.labelAmount.Name = "labelAmount";
             this.labelAmount.Size = new System.Drawing.Size(51, 15);
             this.labelAmount.TabIndex = 6;
             this.labelAmount.Text = "Amount";
             // 
+            // checkBoxRenew
+            // 
+            this.checkBoxRenew.AutoSize = true;
+            this.checkBoxRenew.Location = new System.Drawing.Point(513, 241);
+            this.checkBoxRenew.Name = "checkBoxRenew";
+            this.checkBoxRenew.Size = new System.Drawing.Size(90, 19);
+            this.checkBoxRenew.TabIndex = 7;
+            this.checkBoxRenew.Text = "Auto Renew";
+            this.checkBoxRenew.UseVisualStyleBackColor = true;
+            this.checkBoxRenew.Enter += new System.EventHandler(this.checkBoxRenew_Enter);
+            // 
             // mainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(822, 464);
+            this.ClientSize = new System.Drawing.Size(824, 301);
+            this.Controls.Add(this.checkBoxRenew);
             this.Controls.Add(this.labelAmount);
             this.Controls.Add(this.labelTrackBarValue);
             this.Controls.Add(this.trackBarUpperCase);
             this.Controls.Add(this.textBoxAmount);
             this.Controls.Add(this.buttonRandomLetter);
             this.Controls.Add(this.buttonRandomText);
-            this.Controls.Add(this.textBoxMain);
             this.Controls.Add(this.buttonAddText);
             this.Controls.Add(this.textBoxInput);
+            this.Controls.Add(this.textBoxMain);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "mainWindow";
             this.Text = "Keyboard Training Utility";
             this.Enter += new System.EventHandler(this.mainWindow_Enter);
@@ -170,6 +186,7 @@
         public System.Windows.Forms.TrackBar trackBarUpperCase;
         private System.Windows.Forms.Label labelTrackBarValue;
         private System.Windows.Forms.Label labelAmount;
+        private System.Windows.Forms.CheckBox checkBoxRenew;
     }
 }
 
